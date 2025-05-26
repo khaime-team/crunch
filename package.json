@@ -1,0 +1,20 @@
+{
+  "name": "sectr",
+  "version": "1.0.1",
+  "description": "Minify and extract HTML <section> blocks to structured JSON",
+  "main": "src/index.js",
+  "bin": {
+    "sectr": "./src/index.js"
+  },
+  "type": "module",
+  "keywords": [
+    "html",
+    "minify",
+    "extract",
+    "sections",
+    "cli",
+    "json"
+  ],
+  "author": "Oluwatimilehin J. Awoniyi",
+  "license": "MIT"
+}
