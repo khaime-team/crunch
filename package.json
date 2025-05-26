@@ -15,6 +15,7 @@
     "cli",
     "json"
   ],
+  "private":"true",
   "author": "Oluwatimilehin J. Awoniyi",
   "license": "MIT"
 }

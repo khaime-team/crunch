@@ -1,11 +1,11 @@
 # Sectr - Khaime HTML Parser
 
-Minifies HTML `<section>` blocks and outputs JSON for templating, etc.
+Minifies HTML `<section>` blocks per file and outputs JSON for templating, etc.
 
 ## Installation
 
 ```bash
-npm install -g sectr
+npm install -g https://github.com/khaime-team/sectr.git
 ```
 
 ## Usage
