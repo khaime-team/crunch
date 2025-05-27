@@ -22,7 +22,7 @@ sectr input.html output.json
 
 sectr src/pages/home.html
 sectr index.html data/sections.json`
-````
+```
 
 ## What it does
 
