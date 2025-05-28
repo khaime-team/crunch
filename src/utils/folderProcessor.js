@@ -7,8 +7,6 @@ export default async function folderProcessor(folder, options) {
   const htmlExtensionRegex = /\.html?$/i;
   const outputFileName = "all.json";
 
-  // 3. Take note of flags/options
-
   console.log(`⌛ Processing ${folder} folder 📂...`);
   try {
     const dir = await opendir(folder);

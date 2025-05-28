@@ -1,6 +1,6 @@
 # Sectr - Khaime HTML Parser
 
-Minifies HTML `<section>` blocks per file and outputs JSON for templating, etc.
+Minifies HTML `<section>` blocks per file or folder/directory and outputs JSON for templating, etc.
 
 ## Installation
 
@@ -11,20 +11,16 @@ npm install -g https://github.com/khaime-team/sectr.git
 ## Usage
 
 ```bash
-# Basic usage
+# Basic usage with a html file
 sectr input.html
 
-# Specify output file
-
-sectr input.html output.json
-
-# Examples
-
-sectr src/pages/home.html
-sectr index.html data/sections.json`
+# Specify a folder containing HTML files
+sectr folder
 ```
 
 ## What it does
+
+> With a folder, it initially scans the folder for html files and does the following:
 
 1. **Extracts** all `<section>`tags from your HTML file
 2. **Minifies** the HTML by removing unnecessary whitespace
@@ -32,6 +28,8 @@ sectr index.html data/sections.json`
 4. **Preserves** important attributes like`id`, `class`, `data-gjs-name`, etc.
 
 ## Output Format
+
+### HTML File Output
 
 ```json
 {
@@ -56,11 +54,51 @@ sectr index.html data/sections.json`
 }
 ```
 
+### Folder Output
+
+```
+{
+  "config": {
+    "merchant": "",
+    "public": true,
+    "metadata": {
+      "name": "",
+      "tags": [""],
+      "image": "",
+      "category": [""],
+      "popularity": " ['popular', 'old']"
+    }
+  },
+  "pages": [
+    {
+      "id": 1,
+      "name": "",
+      "type": "",
+      "pageSlug": "",
+      "sections": [
+        {
+          "id": 1,
+          "name": "",
+          "image": "",
+          "category": [],
+          "type": "",
+          "config": {
+            "merchant": "",
+            "public": true
+          },
+          "html": ""
+        }
+      ]
+    }
+  ]
+}
+```
+
 ## Features
 
 - ✅ Extracts all `<section>` elements
 - ✅ Minifies HTML content
-- ✅ Auto-generates output filename
+- ✅ Auto-generates output filename and some JSON fields
 - ✅ Preserves section metadata
 - ✅ Error handling for missing files
 - ✅ Cross-platform compatibility
