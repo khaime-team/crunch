@@ -56,7 +56,7 @@ sectr folder
 
 ### Folder Output
 
-```
+```json
 {
   "config": {
     "merchant": "",
