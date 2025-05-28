@@ -13,12 +13,16 @@ export default async function folderProcessor(folder, options) {
   try {
     const dir = await opendir(folder);
     let pages = [];
+    let pageIdCounter = 1;
+
     for await (const dirent of dir) {
       if (dirent.isFile() && htmlExtensionRegex.test(dirent.name)) {
         const fullPath = path.join(folder, dirent.name);
         console.log(`    -- Processing 📄 ${fullPath} file --`);
         const page = fileProcessor(fullPath, {
           writeOutput: false,
+          pageId: pageIdCounter++,
+          folderName: path.basename(folder),
         });
         pages.push(page);
       }

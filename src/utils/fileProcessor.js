@@ -16,11 +16,16 @@ export default function fileProcessor(inputArg, options = {}) {
     if (sections.length === 0) {
       console.warn(`⚠️  Warning: No <section> tags found in ${inputArg}`);
     }
+    const type =
+      path.basename(inputArg, path.extname(inputArg)) === "index"
+        ? "home"
+        : path.basename(inputArg, path.extname(inputArg));
+
     const pageJson = {
-      id: "",
-      name: "",
-      type: "",
-      pageSlug: "",
+      id: options.pageId || 419,
+      name: options.folderName + "-" + type || "",
+      type,
+      pageSlug: type,
       sections: sections,
     };
 
