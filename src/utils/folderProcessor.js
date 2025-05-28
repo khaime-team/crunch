@@ -4,23 +4,22 @@ import { opendir } from "node:fs/promises";
 import fileProcessor from "./fileProcessor.js";
 
 export default async function folderProcessor(folder, options) {
-  // 1. Check if folder exist - already done in the main()
-  // 2. Open folder and search for HTML files
-
   const htmlExtensionRegex = /\.html?$/i;
   const outputFileName = "all.json";
 
   // 3. Take note of flags/options
 
+  console.log(`⌛ Processing ${folder} folder 📂...`);
   try {
-    console.log(`⌛ Processing ${folder} folder 📂...`);
     const dir = await opendir(folder);
     let pages = [];
     for await (const dirent of dir) {
       if (dirent.isFile() && htmlExtensionRegex.test(dirent.name)) {
         const fullPath = path.join(folder, dirent.name);
         console.log(`    -- Processing 📄 ${fullPath} file --`);
-        let page = fileProcessor(fullPath, options);
+        const page = fileProcessor(fullPath, {
+          writeOutput: false,
+        });
         pages.push(page);
       }
     }

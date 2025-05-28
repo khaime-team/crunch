@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import fs from "fs";
+import path from "path";
 import folderProcessor from "./utils/folderProcessor.js";
 import fileProcessor from "./utils/fileProcessor.js";
 
@@ -35,10 +36,8 @@ function main() {
   const stat = fs.statSync(inputArg);
 
   if (stat.isDirectory()) {
-    console.log("it is a folder");
     folderProcessor(inputArg, options);
   } else if (stat.isFile()) {
-    console.log("it is a file");
     fileProcessor(inputArg, options);
   } else {
     console.error(`❌ Error: '${inputArg}' is neither a file nor a directory.`);
