@@ -2,62 +2,45 @@
 
 import fs from "fs";
 import path from "path";
-import extractSections from "./utils/extrator.js";
+import folderProcessor from "./utils/folderProcessor.js";
+import fileProcessor from "./utils/fileProcessor.js";
 
 function showUsage() {
-  console.log(`\nSectr - HTML Section Extractor\n`);
-  console.log(`Usage: sectr <input.html> [output.json]\n`);
+  console.log(`\nUsage: sectr <input.html>\n`);
   console.log(`Examples:`);
   console.log(`  sectr index.html`);
-  console.log(`  sectr index.html output.json`);
-  console.log(`  sectr src/pages/home.html data/sections.json`);
+  console.log(`  sectr some_folder_containing_HTML_files`);
 }
 
-function main() {
-  const inputFile = process.argv[2];
+/**
+ * FLAGS
+ *      --no-headers: excludes sections with navbar and footer as id values
+ *
+ */
 
-  if (!inputFile) {
+function main() {
+  const inputArg = process.argv[2];
+  const options = {};
+
+  if (!inputArg) {
     console.error("❌  Error: No input file specified");
     showUsage();
     process.exit(1);
   }
 
-  if (!fs.existsSync(inputFile)) {
-    console.error(`❌ Error: File '${inputFile}' not found`);
+  if (!fs.existsSync(inputArg)) {
+    console.error(`❌ Error: File '${inputArg}' not found`);
     process.exit(1);
   }
 
-  // const autoNameFile = inputFile.split(".")[0];
-  const autoNameFile = path.basename(inputFile, path.extname(inputFile));
-  const outputFile = process.argv[3] || `${autoNameFile}.json`;
+  const stat = fs.statSync(inputArg);
 
-  try {
-    console.log(`⌛ Processing ${inputFile}...`);
-    const html = fs.readFileSync(inputFile, "utf8");
-    const sections = extractSections(html);
-    if (sections.length === 0) {
-      console.warn(`⚠️  Warning: No <section> tags found in ${inputFile}`);
-    }
-    const pageJson = {
-      id: 1,
-      name: "",
-      type: "",
-      pageSlug: "",
-      sections: sections,
-    };
-
-    const outputDir = path.dirname(outputFile);
-    if (!fs.existsSync(outputDir)) {
-      fs.mkdirSync(outputDir, { recursive: true });
-    }
-
-    fs.writeFileSync(outputFile, JSON.stringify(pageJson, null, 2), "utf8");
-
-    console.log(`⚒️  Extracted and minified ${sections.length} section(s)`);
-
-    console.log(`✅ Output saved to: ${outputFile}`);
-  } catch (error) {
-    console.error(`❌ Error processing file: ${error.message}`);
+  if (stat.isDirectory()) {
+    folderProcessor(inputArg, options);
+  } else if (stat.isFile()) {
+    fileProcessor(inputArg, options);
+  } else {
+    console.error(`❌ Error: '${inputArg}' is neither a file nor a directory.`);
     process.exit(1);
   }
 }
