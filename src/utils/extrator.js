@@ -71,7 +71,7 @@ export default function extractSections(html, options) {
           "_" +
           sectionId,
         image: "{{CLOUDFRONT_URL}}/" + options.folderName + "/sections/",
-        category: options.category || "",
+        category: [options.category || ""],
         type: sectionId,
         config: {
           merchant: options.folderName || options.merchant,

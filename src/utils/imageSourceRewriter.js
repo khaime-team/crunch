@@ -1,13 +1,32 @@
 export default function rewriteImageSources(html, folderName = "") {
-    return html.replace(/<img\b[^>]*\bsrc\s*=\s*["']([^"']+)["'][^>]*>/gi, (match, src) => {
+  // First, update <img src="...">
+  html = html.replace(
+    /<img\b[^>]*\bsrc\s*=\s*["']([^"']+)["'][^>]*>/gi,
+    (match, src) => {
       let newSrc = src;
-  
       newSrc = newSrc.replace(/\.(png|jpe?g)$/i, ".webp");
-  
-      // this replaces ./assets with {{CLOUDFRONT_URL}}/folderName (please pass folderName as a parameter)
-      newSrc = newSrc.replace(/^\.\/assets/, `{{CLOUDFRONT_URL}}/${folderName}`);
-  
+      newSrc = newSrc.replace(
+        /^\.\/assets/,
+        `{{CLOUDFRONT_URL}}/${folderName}`
+      );
       return match.replace(src, newSrc);
-    });
-  }
-  
+    }
+  );
+
+  // Then, update inline background images like style="background-image: url('./assets/xyz.png')"
+  html = html.replace(
+    /style\s*=\s*["'][^"']*url\((['"]?)([^"')]+)(['"]?)\)[^"']*["']/gi,
+    (match, quote1, url, quote2) => {
+      let newUrl = url;
+      newUrl = newUrl.replace(/\.(png|jpe?g)$/i, ".webp");
+      newUrl = newUrl.replace(
+        /^\.\/assets/,
+        `{{CLOUDFRONT_URL}}/${folderName}`
+      );
+      const newStyle = match.replace(url, newUrl);
+      return newStyle;
+    }
+  );
+
+  return html;
+}
