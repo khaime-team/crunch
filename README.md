@@ -1,21 +1,21 @@
-# Sectr - Khaime HTML Parser
+# Crunch - Khaime HTML Parser
 
 Minifies HTML `<section>` blocks per file or folder/directory and outputs JSON for templating, etc.
 
 ## Installation
 
 ```bash
-npm install -g https://github.com/khaime-team/sectr.git
+npm install -g https://github.com/khaime-team/crunch.git
 ```
 
 ## Usage
 
 ```bash
 # Basic usage with a html file
-sectr input.html --no-header --public=false --category=ecommerce
+crunch input.html --no-header --public=false --category=ecommerce
 
 # Specify a folder containing HTML files
-sectr folder --no-header --public=false --category=ecommerce
+crunch folder --no-header --public=false --category=ecommerce
 ```
 
 ## What it does
