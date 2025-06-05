@@ -14,18 +14,7 @@ function showUsage() {
   );
 }
 
-/**
- * FLAGS
- *      --no-headers: excludes sections with navbar and footer as id values
- *
- *      --public: make a template publicity true/false:
- *              USAGE: --public=true
- *
- */
-
 function main() {
-  // const inputArg = args.find((arg) => !arg.startsWith("--"));
-
   const args = process.argv.slice(2);
   const inputArg = args.find((arg) => !arg.startsWith("--"));
   const options = {};

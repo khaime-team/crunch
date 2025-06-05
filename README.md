@@ -5,14 +5,14 @@ Minifies HTML `<section>` blocks per file or folder/directory and outputs JSON f
 ## Installation
 
 ```bash
-npm install -g https://github.com/khaime-team/crunch.git
+npm install -g crunch-installer
 ```
 
 ## Usage
 
 ```bash
 # Basic usage with a html file
-crunch input.html --no-header --public=false --category=ecommerce
+crunch input.html --no-header --public=false --category=ecommerce --merchant=johnDoe
 
 # Specify a folder containing HTML files
 crunch folder --no-header --public=false --category=ecommerce
