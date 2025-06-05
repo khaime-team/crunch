@@ -5,12 +5,12 @@ import folderProcessor from "./utils/folderProcessor.js";
 import fileProcessor from "./utils/fileProcessor.js";
 
 function showUsage() {
-  console.log(`\nUsage: sectr <input.html>\n`);
+  console.log(`\nUsage: crunch <input.html>\n`);
   console.log(`Examples:`);
-  console.log(`  sectr index.html --merchant=johnDoe`);
-  console.log(`  sectr some_folder_containing_HTML_files`);
+  console.log(`  crunch index.html --merchant=johnDoe`);
+  console.log(`  crunch some_folder_containing_HTML_files`);
   console.log(
-    `  sectr some_folder --no-header --public=false --category=ecommerce`
+    `  crunch some_folder --no-header --public=false --category=ecommerce`
   );
 }
 
