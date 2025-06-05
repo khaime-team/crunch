@@ -12,10 +12,10 @@ npm install -g https://github.com/khaime-team/sectr.git
 
 ```bash
 # Basic usage with a html file
-sectr input.html
+sectr input.html --no-header --public=false --category=ecommerce
 
 # Specify a folder containing HTML files
-sectr folder
+sectr folder --no-header --public=false --category=ecommerce
 ```
 
 ## What it does

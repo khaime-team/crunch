@@ -1,2 +1,4 @@
 amara
 *.json
+processor.js
+parseArgs.js
