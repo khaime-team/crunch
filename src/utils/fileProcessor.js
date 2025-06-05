@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import rewriteImageSources from "./imageSourceRewriter.js";
 import extractSections from "./extrator.js";
 
 export default function fileProcessor(inputArg, options = {}) {
@@ -8,14 +9,18 @@ export default function fileProcessor(inputArg, options = {}) {
 
   try {
     if (options.writeOutput) {
-      console.log(`⌛ Processing 📄 ${inputArg} file...`);
+      console.log(`\n⌛ Processing 📄 ${inputArg} file...\n`);
     }
 
-    const html = fs.readFileSync(inputArg, "utf8");
-    const sections = extractSections(html);
-    if (sections.length === 0) {
+    let html = fs.readFileSync(inputArg, "utf8");
+    html = rewriteImageSources(html, options.folderName || "assets");
+
+    const extractedSections = extractSections(html, { inputArg, ...options });
+
+    if (extractedSections.sections.length === 0) {
       console.warn(`⚠️  Warning: No <section> tags found in ${inputArg}`);
     }
+
     const type =
       path.basename(inputArg, path.extname(inputArg)) === "index"
         ? "home"
@@ -23,10 +28,15 @@ export default function fileProcessor(inputArg, options = {}) {
 
     const pageJson = {
       id: options.pageId || 419,
-      name: options.folderName + "-" + type || "",
+      name: (options.folderName || options.merchant) + "-" + type,
       type,
       pageSlug: type,
-      sections: sections,
+      sections: extractedSections.sections,
+    };
+
+    const layoutsJson = {
+      type,
+      layoutSections: extractedSections.layouts,
     };
 
     if (options.writeOutput !== false) {
@@ -37,11 +47,13 @@ export default function fileProcessor(inputArg, options = {}) {
       }
 
       fs.writeFileSync(outputFile, JSON.stringify(pageJson, null, 2), "utf8");
-      console.log(`⚒️  Extracted and minified ${sections.length} section(s)`);
+      console.log(
+        `\n⚒️  Extracted and minified ${extractedSections.sections.length} section(s)`
+      );
       console.log(`✅ Output saved to: ${outputFile}`);
     }
 
-    return pageJson;
+    return { pageJson, layoutsJson };
   } catch (error) {
     console.error(`❌ Error processing file: ${error.message}`);
     process.exit(1);
