@@ -37,7 +37,7 @@ export default function extractSections(html, options) {
       layouts.navbar = {
         id: 1,
         name: options.folderName + "_" + type + "_" + sectionId,
-        image: "{{CLOUDFRONT_URL}}/" + options.folderName + "/sections/",
+        image: "{{CLOUDFRONT_URL}}/section-template-images/" + options.folderName + "/sections/",
         category: options.category || "",
         type: sectionId,
         config: {

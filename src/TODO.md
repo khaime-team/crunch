@@ -1,5 +1,7 @@
 # TODO
 
+- [ ] Rearrange file output to have home/index as first page
+- [ ] Target bg-images `./assets` to  `{{CLOUDFRONT_URL}}`
 - [ ] Replace hardcoded merchant info to variables like {MERCHANT_RELEVANT_DETAILS}
 - [ ] Inspect ASCII characters
 - [x] Auto add {{CLOUDFRONT_URL}} to image src
