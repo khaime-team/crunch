@@ -1,9 +1,9 @@
 # TODO
 
 - [ ] Rearrange file output to have home/index as first page
-- [ ] Target bg-images `./assets` to  `{{CLOUDFRONT_URL}}`
 - [ ] Replace hardcoded merchant info to variables like {MERCHANT_RELEVANT_DETAILS}
 - [ ] Inspect ASCII characters
+- [x] Target bg-images `./assets` to  `{{CLOUDFRONT_URL}}`
 - [x] Auto add {{CLOUDFRONT_URL}} to image src
 - [x] Replace instances of `.png | .jpeg | .jpg` to `.webp`
 - [x] Take a folder as an argument
