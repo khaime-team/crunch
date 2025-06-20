@@ -58,7 +58,7 @@ export default function extractSections(html, options) {
         category: options.category || "",
         type: sectionId,
         config: {
-          merchant: options.folderName,
+          merchant: options.merchant || options.folderName,
           public: options.public,
         },
         html: minifiedHTML,

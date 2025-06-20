@@ -34,13 +34,13 @@ export default async function folderProcessor(folder, options) {
 
     const folderJson = {
       config: {
-        merchant: path.basename(folder),
+        merchant: options.merchant || path.basename(folder),
         public: options.public ?? true,
         metadata: {
           name: path.basename(folder),
           tags: ["ecommerce"],
           image: "",
-          category: ["ecommerce"],
+          category: [options.category || ""],
           popularity: "['popular', 'old']",
         },
       },
