@@ -37,7 +37,10 @@ export default function extractSections(html, options) {
       layouts.navbar = {
         id: 1,
         name: options.folderName + "_" + type + "_" + sectionId,
-        image: "{{CLOUDFRONT_URL}}/section-template-images/" + options.folderName + "/sections/",
+        image:
+          "{{CLOUDFRONT_URL}}/section-template-images/" +
+          options.folderName +
+          "/sections/",
         category: options.category || "",
         type: sectionId,
         config: {
@@ -70,11 +73,14 @@ export default function extractSections(html, options) {
           type +
           "_" +
           sectionId,
-        image: "{{CLOUDFRONT_URL}}/section-template-images/" + options.folderName + "/sections/",
+        image:
+          "{{CLOUDFRONT_URL}}/section-template-images/" +
+          options.folderName +
+          "/sections/",
         category: [options.category || ""],
         type: sectionId,
         config: {
-          merchant: options.folderName || options.merchant,
+          merchant: options.merchant || options.folderName,
           public: options.public,
         },
         html: minifiedHTML,
