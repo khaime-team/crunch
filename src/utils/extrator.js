@@ -36,10 +36,10 @@ export default function extractSections(html, options) {
     if (sectionId === "navbar" && !arelayoutsProcessed.navbar) {
       layouts.navbar = {
         id: 1,
-        name: options.folderName + "_" + "_" + sectionId,
+        name: options.folderName + "_" + sectionId,
         image:
           "{{CLOUDFRONT_URL}}/section-template-images/" +
-          options.folderName.toLowerCase() +
+          options.folderName +
           "/sections/",
         category: options.category || "",
         type: sectionId,
@@ -53,10 +53,10 @@ export default function extractSections(html, options) {
     } else if (sectionId === "footer" && !arelayoutsProcessed.footer) {
       layouts.footer = {
         id: 1,
-        name: options.folderName + "_" + "_" + sectionId,
+        name: options.folderName + "_" + sectionId,
         image:
           "{{CLOUDFRONT_URL}}/section-template-images/" +
-          options.folderName.toLowerCase() +
+          options.folderName +
           "/sections/",
         category: options.category || "",
         type: sectionId,
@@ -78,7 +78,7 @@ export default function extractSections(html, options) {
           sectionId,
         image:
           "{{CLOUDFRONT_URL}}/section-template-images/" +
-          options.folderName.toLowerCase() +
+          options.folderName +
           "/sections/",
         category: [options.category || ""],
         type: sectionId,
