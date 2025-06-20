@@ -39,12 +39,12 @@ export default function extractSections(html, options) {
         name: options.folderName + "_" + type + "_" + sectionId,
         image:
           "{{CLOUDFRONT_URL}}/section-template-images/" +
-          options.folderName +
+          options.folderName.toLowerCase() +
           "/sections/",
         category: options.category || "",
         type: sectionId,
         config: {
-          merchant: options.folderName,
+          merchant: options.merchant || options.folderName,
           public: options.public,
         },
         html: minifiedHTML,
@@ -54,7 +54,10 @@ export default function extractSections(html, options) {
       layouts.footer = {
         id: 1,
         name: options.folderName + "_" + type + "_" + sectionId,
-        image: "{{CLOUDFRONT_URL}}/" + options.folderName + "/sections/",
+        image:
+          "{{CLOUDFRONT_URL}}/" +
+          options.folderName.toLowerCase() +
+          "/sections/",
         category: options.category || "",
         type: sectionId,
         config: {
