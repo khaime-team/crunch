@@ -7,7 +7,7 @@ export default function rewriteImageSources(html, folderName = "") {
       newSrc = newSrc.replace(/\.(png|jpe?g)$/i, ".webp");
       newSrc = newSrc.replace(
         /^\.\/assets/,
-        `{{CLOUDFRONT_URL}}/${folderName}`
+        `{{CLOUDFRONT_URL}}/${folderName.toLowerCase()}`
       );
       return match.replace(src, newSrc);
     }
