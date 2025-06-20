@@ -55,7 +55,7 @@ export default function extractSections(html, options) {
         id: 1,
         name: options.folderName + "_" + type + "_" + sectionId,
         image:
-          "{{CLOUDFRONT_URL}}/" +
+          "{{CLOUDFRONT_URL}}/section-template-images/" +
           options.folderName.toLowerCase() +
           "/sections/",
         category: options.category || "",
