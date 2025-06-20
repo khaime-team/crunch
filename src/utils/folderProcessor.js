@@ -38,7 +38,7 @@ export default async function folderProcessor(folder, options) {
         public: options.public ?? true,
         metadata: {
           name: path.basename(folder),
-          tags: ["ecommerce"],
+          tags: [options.category || ""],
           image: "",
           category: [options.category || ""],
           popularity: "['popular', 'old']",
